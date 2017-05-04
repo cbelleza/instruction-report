@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>instruction-report</name>
-	<description>Instruction report</description>
+	<description>Instruction report application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
