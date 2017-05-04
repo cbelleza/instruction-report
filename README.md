@@ -29,8 +29,8 @@ The default log level is "info", case needed it can be changed by the property
 ```
 ## Start example
 ```
-java -jar target/instruction-report-1.0.0.jar InstructionReportApplication 
-      --instruction.file-path=D:/instruction-report/instructions/instructions.csv
+java -jar target/instruction-report-1.0.0.jar 
+      --instruction.file-path=c:/git/instruction-report/instructions/instructions.csv 
       --logging.level.com.jpmorgan=warn
 ```
 ## Test classes
