@@ -18,7 +18,7 @@ import com.jpmorgan.support.InstructionVO;
 /**
  * Service to write pending instructions into csv file based on settlement date
  * 
- * @author Carlos Belleza
+ * @author Carlos Alberto
  *
  */
 @Component
