@@ -8,7 +8,7 @@ public enum Flag {
 
     private String value;
 
-    Flag(String value) {
+    Flag(final String value) {
         this.value = value;
     }
 

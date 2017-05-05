@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.jpmorgan.support.InstructionVO;
+import com.jpmorgan.support.vo.Instruction;
 
 public interface InstructionReaderService {
 
-    public List<InstructionVO> readPendingIntruction(final File intructionFile) throws IOException;
+    public List<Instruction> readPendingIntruction(final File intructionFile) throws IOException;
 }

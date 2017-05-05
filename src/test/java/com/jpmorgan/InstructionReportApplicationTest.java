@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.jpmorgan.service.InstructionReaderService;
 import com.jpmorgan.service.InstructionWriterService;
-import com.jpmorgan.support.InstructionVO;
+import com.jpmorgan.support.vo.Instruction;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,7 +39,7 @@ public class InstructionReportApplicationTest {
         assertThat(instructionFile).isNotNull();
 
         // Read and check pending instructions
-        final List<InstructionVO> pendingIntructionList = instructionReaderService
+        final List<Instruction> pendingIntructionList = instructionReaderService
                 .readPendingIntruction(instructionFile);
         assertThat(pendingIntructionList).isNotEmpty().doesNotContainNull().doesNotHaveDuplicates();
 

@@ -22,7 +22,7 @@ public class InstructionReportApplication {
         return (args) -> intructionProcessor.process();
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SpringApplication.run(InstructionReportApplication.class, args);
     }
 }

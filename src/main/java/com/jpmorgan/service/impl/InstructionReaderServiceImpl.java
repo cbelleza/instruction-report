@@ -25,7 +25,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.jpmorgan.service.InstructionReaderService;
 import com.jpmorgan.support.Flag;
-import com.jpmorgan.support.InstructionVO;
+import com.jpmorgan.support.vo.Instruction;
 
 /**
  * Service to read instructions from csv file and print report on console
@@ -49,11 +49,11 @@ public class InstructionReaderServiceImpl implements InstructionReaderService {
     }
 
     @Override
-    public List<InstructionVO> readPendingIntruction(final File intructionFile) throws IOException {
+    public List<Instruction> readPendingIntruction(final File intructionFile) throws IOException {
         LOGGER.info("Reading instructions csv file");
 
         // Read csv file
-        final MappingIterator<InstructionVO> instructionVOIterator = csvMapper.readerFor(InstructionVO.class)
+        final MappingIterator<Instruction> instructionIterator = csvMapper.readerFor(Instruction.class)
                 .with(CsvSchema.emptySchema().withHeader()).with(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
                 .readValues(intructionFile);
 
@@ -61,11 +61,11 @@ public class InstructionReaderServiceImpl implements InstructionReaderService {
         flagMap.put(Flag.BUY, new HashMap<String, BigDecimal>());
         flagMap.put(Flag.SELL, new HashMap<String, BigDecimal>());
 
-        final List<InstructionVO> pendingInstructionVOList = new ArrayList<InstructionVO>();
+        final List<Instruction> pendingInstructionList = new ArrayList<Instruction>();
 
         // Loop instructions
-        while (instructionVOIterator.hasNext()) {
-            final InstructionVO instruction = instructionVOIterator.next();
+        while (instructionIterator.hasNext()) {
+            final Instruction instruction = instructionIterator.next();
 
             // Buy or Sell
             final Flag flag = instruction.getFlag();
@@ -84,11 +84,11 @@ public class InstructionReaderServiceImpl implements InstructionReaderService {
                 final DayOfWeek settlementDateDayOfWeek = settlementDate.getDayOfWeek();
 
                 if (settlementDateDayOfWeek.equals(DayOfWeek.SATURDAY)) {
-                    moveInstruction(pendingInstructionVOList, instruction, settlementDate, 2);
+                    moveInstruction(pendingInstructionList, instruction, settlementDate, 2);
 
                 } else if (settlementDateDayOfWeek.equals(DayOfWeek.SUNDAY)
                         && !exclusiveCurrencyTrade.contains(currency)) {
-                    moveInstruction(pendingInstructionVOList, instruction, settlementDate, 1);
+                    moveInstruction(pendingInstructionList, instruction, settlementDate, 1);
 
                 } else if (!(exclusiveCurrencyTrade.contains(currency)
                         && !settlementDateDayOfWeek.equals(DayOfWeek.FRIDAY))) {
@@ -107,7 +107,7 @@ public class InstructionReaderServiceImpl implements InstructionReaderService {
 
             } else {
                 LOGGER.debug("Moving instruction for future checking");
-                pendingInstructionVOList.add(instruction);
+                pendingInstructionList.add(instruction);
             }
         }
 
@@ -115,7 +115,7 @@ public class InstructionReaderServiceImpl implements InstructionReaderService {
         flagMap.forEach((v1, v2) -> printReport(v1, v2.entrySet()));
         System.out.println("");
 
-        return pendingInstructionVOList;
+        return pendingInstructionList;
     }
 
     /**
@@ -126,8 +126,8 @@ public class InstructionReaderServiceImpl implements InstructionReaderService {
      * @param settlementDate
      * @param days
      */
-    private void moveInstruction(final List<InstructionVO> pendingInstructionList, final InstructionVO instruction,
-            final LocalDate settlementDate, int days) {
+    private void moveInstruction(final List<Instruction> pendingInstructionList, final Instruction instruction,
+            final LocalDate settlementDate, final int days) {
         final LocalDate nextSettlementDate = settlementDate.plusDays(days);
         instruction.setSettlementDate(nextSettlementDate);
         pendingInstructionList.add(instruction);

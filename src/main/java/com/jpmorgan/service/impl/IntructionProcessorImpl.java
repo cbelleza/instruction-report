@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.jpmorgan.service.InstructionReaderService;
 import com.jpmorgan.service.InstructionWriterService;
 import com.jpmorgan.service.IntructionProcessor;
-import com.jpmorgan.support.InstructionVO;
+import com.jpmorgan.support.vo.Instruction;
 
 /**
  * Service to manage instruction process
@@ -46,8 +46,7 @@ public class IntructionProcessorImpl implements IntructionProcessor {
         }
 
         // Read and check pending instructions
-        final List<InstructionVO> pendingIntructionList = instructionReaderService
-                .readPendingIntruction(instructionFile);
+        final List<Instruction> pendingIntructionList = instructionReaderService.readPendingIntruction(instructionFile);
 
         // Store pending instructions for future checking
         instructionWriterService.writePendingInstruction(instructionFile, pendingIntructionList);

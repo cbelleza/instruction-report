@@ -13,7 +13,7 @@ import org.springframework.util.FileCopyUtils;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.jpmorgan.service.InstructionWriterService;
-import com.jpmorgan.support.InstructionVO;
+import com.jpmorgan.support.vo.Instruction;
 
 /**
  * Service to write pending instructions into csv file based on settlement date
@@ -33,7 +33,7 @@ public class InstructionWriterServiceImpl implements InstructionWriterService {
     }
 
     @Override
-    public void writePendingInstruction(final File intructionFile, final List<InstructionVO> pendingInstructionList)
+    public void writePendingInstruction(final File intructionFile, final List<Instruction> pendingInstructionList)
             throws IOException {
         LOGGER.info("Creating instructions backup file");
         final File intructionFileBackup = new File(
@@ -41,7 +41,7 @@ public class InstructionWriterServiceImpl implements InstructionWriterService {
         FileCopyUtils.copy(intructionFile, intructionFileBackup);
 
         LOGGER.info("Writing pending instructions to csv file");
-        final CsvSchema csvSchema = csvMapper.schemaFor(InstructionVO.class);
+        final CsvSchema csvSchema = csvMapper.schemaFor(Instruction.class);
         // Store instructions into csv
         csvMapper.writer(csvSchema.withUseHeader(true)).writeValues(intructionFile).write(pendingInstructionList);
     }

@@ -1,4 +1,4 @@
-package com.jpmorgan.support;
+package com.jpmorgan.support.vo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,10 +10,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.jpmorgan.support.Flag;
 
 @JsonPropertyOrder({ "Entity", "Buy/Sell", "AgreedFx", "Currency", "InstructionDate", "SettlementDate", "Units",
         "Price per unit" })
-public class InstructionVO {
+public class Instruction {
 
     @JsonProperty("Entity")
     public String entity;
@@ -49,7 +50,7 @@ public class InstructionVO {
         return entity;
     }
 
-    public void setEntity(String entity) {
+    public void setEntity(final String entity) {
         this.entity = entity;
     }
 
@@ -57,7 +58,7 @@ public class InstructionVO {
         return flag;
     }
 
-    public void setFlag(Flag flag) {
+    public void setFlag(final Flag flag) {
         this.flag = flag;
     }
 
@@ -65,7 +66,7 @@ public class InstructionVO {
         return agreedFx;
     }
 
-    public void setAgreedFx(BigDecimal agreedFx) {
+    public void setAgreedFx(final BigDecimal agreedFx) {
         this.agreedFx = agreedFx;
     }
 
@@ -73,7 +74,7 @@ public class InstructionVO {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(final String currency) {
         this.currency = currency;
     }
 
@@ -81,7 +82,7 @@ public class InstructionVO {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(final LocalDate date) {
         this.date = date;
     }
 
@@ -89,7 +90,7 @@ public class InstructionVO {
         return settlementDate;
     }
 
-    public void setSettlementDate(LocalDate settlementDate) {
+    public void setSettlementDate(final LocalDate settlementDate) {
         this.settlementDate = settlementDate;
     }
 
@@ -97,7 +98,7 @@ public class InstructionVO {
         return units;
     }
 
-    public void setUnits(BigDecimal units) {
+    public void setUnits(final BigDecimal units) {
         this.units = units;
     }
 
@@ -105,7 +106,7 @@ public class InstructionVO {
         return pricePerUnit;
     }
 
-    public void setPricePerUnit(BigDecimal pricePerUnit) {
+    public void setPricePerUnit(final BigDecimal pricePerUnit) {
         this.pricePerUnit = pricePerUnit;
     }
 }
