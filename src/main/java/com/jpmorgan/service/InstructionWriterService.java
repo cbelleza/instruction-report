@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.jpmorgan.support.vo.Instruction;
+import com.jpmorgan.model.Instruction;
 
 public interface InstructionWriterService {
 

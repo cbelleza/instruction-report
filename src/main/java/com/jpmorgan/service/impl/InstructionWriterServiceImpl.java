@@ -12,8 +12,8 @@ import org.springframework.util.FileCopyUtils;
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.jpmorgan.model.Instruction;
 import com.jpmorgan.service.InstructionWriterService;
-import com.jpmorgan.support.vo.Instruction;
 
 /**
  * Service to write pending instructions into csv file based on settlement date

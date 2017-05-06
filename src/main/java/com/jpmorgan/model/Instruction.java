@@ -1,4 +1,4 @@
-package com.jpmorgan.support.vo;
+package com.jpmorgan.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

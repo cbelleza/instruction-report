@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.jpmorgan.model.Instruction;
 import com.jpmorgan.service.InstructionReaderService;
 import com.jpmorgan.service.InstructionWriterService;
-import com.jpmorgan.support.vo.Instruction;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

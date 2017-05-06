@@ -23,9 +23,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.jpmorgan.model.Instruction;
 import com.jpmorgan.service.InstructionReaderService;
 import com.jpmorgan.support.Flag;
-import com.jpmorgan.support.vo.Instruction;
 
 /**
  * Service to read instructions from csv file and print report on console
